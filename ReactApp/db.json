@@ -1,0 +1,56 @@
+{
+  "tulokset": [
+    {
+      "id": 10,
+      "nimi": "T_TV3",
+      "pituusL": "6",
+      "pituusA": "0",
+      "pituusB": "0",
+      "kuormaTV": "8",
+      "kuormaPK": "0",
+      "kuormaPM": "0",
+      "tyyppi": "TV",
+      "maxM": "-366",
+      "maxV": "-246"
+    },
+    {
+      "nimi": "KOE",
+      "pituusL": "6",
+      "pituusA": "0",
+      "pituusB": "0",
+      "kuormaTV": "6",
+      "kuormaPK": "0",
+      "kuormaPM": "0",
+      "tyyppi": "TV",
+      "maxM": 0,
+      "maxV": 0,
+      "id": 12
+    },
+    {
+      "nimi": "timo",
+      "pituusL": "1",
+      "pituusA": "0",
+      "pituusB": "0",
+      "kuormaTV": "1",
+      "kuormaPK": "0",
+      "kuormaPM": "0",
+      "tyyppi": "",
+      "maxM": -0.125,
+      "maxV": -0.5,
+      "id": 13
+    },
+    {
+      "id": 14,
+      "nimi": "testPalkki",
+      "pituusL": "6",
+      "pituusA": "0",
+      "pituusB": "0",
+      "kuormaTV": "5",
+      "kuormaPK": "0",
+      "kuormaPM": "0",
+      "tyyppi": "TV",
+      "maxM": -22.5,
+      "maxV": -15
+    }
+  ]
+}
