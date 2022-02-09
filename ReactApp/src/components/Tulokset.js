@@ -34,11 +34,15 @@ const Tulokset = ({ classes, ...props }) => {
     // const { addToast } = useToasts()
     const onEdit = (id) => {
         setCurrentId(id);
+        console.log("id: ", id);
     }
 
     const onDelete = id => {
-        if (window.confirm('Are you sure to delete this record?'))
+        if (window.confirm('Are you sure to delete this record?')) {
             props.deleteTulos(id)
+            console.log("id: ", id);
+        }
+
     }
 
 
@@ -53,8 +57,18 @@ const Tulokset = ({ classes, ...props }) => {
                         <Table>
                             <TableHead className={classes.root}>
                                 <TableRow>
-                                    <TableCell>Tyyppi</TableCell>
-                                    <TableCell>Kuvaus</TableCell>
+                                    <TableCell>Nimi</TableCell>
+                                    <TableCell>Pituus L</TableCell>
+                                    <TableCell>Pituus A</TableCell>
+                                    <TableCell>Pituus B</TableCell>
+                                    <TableCell>Kuorma TV</TableCell>
+                                    <TableCell>Kuorma PK</TableCell>
+                                    <TableCell>Kuorma PM</TableCell>
+                                    <TableCell>SauvaTyyppi</TableCell>
+                                    <TableCell>Max M</TableCell>
+                                    <TableCell>Max V</TableCell>
+                                    <TableCell>dateOfJoining</TableCell>
+                                    <TableCell>photoFileName</TableCell>
                                     <TableCell></TableCell>
                                 </TableRow>
                             </TableHead>
@@ -62,9 +76,18 @@ const Tulokset = ({ classes, ...props }) => {
                                 {
                                     props.TulosList.map((record, index) => {
                                         return (<TableRow key={index} hover>
-                                            <TableCell>{record.tyyppi}</TableCell>
-                                            <TableCell>{record.kuvaus}</TableCell>
-
+                                            <TableCell>{record.nimi}</TableCell>
+                                            <TableCell>{record.pituusL}</TableCell>
+                                            <TableCell>{record.pituusA}</TableCell>
+                                            <TableCell>{record.pituusB}</TableCell>
+                                            <TableCell>{record.kuormaTV}</TableCell>
+                                            <TableCell>{record.kuormaPK}</TableCell>
+                                            <TableCell>{record.kuormaPM}</TableCell>
+                                            <TableCell>{record.barType}</TableCell>
+                                            <TableCell>{record.maxM}</TableCell>
+                                            <TableCell>{record.maxV}</TableCell>
+                                            <TableCell>{record.dateOfJoining}</TableCell>
+                                            <TableCell>{record.photoFileName}</TableCell>
                                             <TableCell>
                                                 <ButtonGroup variant="text">
                                                     <Button><EditIcon color="primary"

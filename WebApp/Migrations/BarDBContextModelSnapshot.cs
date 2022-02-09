@@ -20,25 +20,25 @@ namespace WebApp.Migrations
 
             modelBuilder.Entity("WebApp.Models.SauvaTyyppi", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("kuvaus")
+                    b.Property<string>("Kuvaus")
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("tyyppi")
+                    b.Property<string>("Tyyppi")
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Sauvatyypit");
                 });
 
             modelBuilder.Entity("WebApp.Models.Tulos", b =>
                 {
-                    b.Property<int>("ResultId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -79,7 +79,7 @@ namespace WebApp.Migrations
                     b.Property<string>("PituusL")
                         .HasColumnType("nvarchar(500)");
 
-                    b.HasKey("ResultId");
+                    b.HasKey("Id");
 
                     b.ToTable("Tulokset");
                 });

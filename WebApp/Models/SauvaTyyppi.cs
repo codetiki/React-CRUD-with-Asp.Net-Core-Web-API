@@ -10,10 +10,10 @@ namespace WebApp.Models
     public class SauvaTyyppi
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
         [Column(TypeName="nvarchar(100)")]
-        public string tyyppi { get; set; }
+        public string Tyyppi { get; set; }
         [Column(TypeName = "nvarchar(500)")]
-        public string kuvaus { get; set; }
+        public string Kuvaus { get; set; }
     }
 }

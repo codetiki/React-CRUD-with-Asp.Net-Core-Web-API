@@ -10,21 +10,21 @@ namespace WebApp.Migrations
                 name: "Sauvatyypit",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    tyyppi = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    kuvaus = table.Column<string>(type: "nvarchar(500)", nullable: true)
+                    Tyyppi = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    Kuvaus = table.Column<string>(type: "nvarchar(500)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sauvatyypit", x => x.id);
+                    table.PrimaryKey("PK_Sauvatyypit", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Tulokset",
                 columns: table => new
                 {
-                    ResultId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nimi = table.Column<string>(type: "nvarchar(500)", nullable: true),
                     PituusL = table.Column<string>(type: "nvarchar(500)", nullable: true),
@@ -41,7 +41,7 @@ namespace WebApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tulokset", x => x.ResultId);
+                    table.PrimaryKey("PK_Tulokset", x => x.Id);
                 });
         }
 

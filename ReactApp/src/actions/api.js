@@ -3,7 +3,7 @@ import axios from "axios";
 const baseurl = "http://localhost:5000/api/"
 
 export default {
-    Tulos(url = baseurl + 'SauvaTyyppi/') {
+    Tulos(url = baseurl + 'Tulos/') {
         return {
             fetchAll: () => axios.get(url),
             fetchById: id => axios.get(url + id),

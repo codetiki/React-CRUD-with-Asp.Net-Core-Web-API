@@ -23,8 +23,18 @@ const styles = theme => ({
 
 
 const initialFieldValues = {
-    tyyppi: '',
-    kuvaus: ''
+    nimi: '',
+    pituusL: '',
+    pituusA: '',
+    pituusB: '',
+    kuormaTV: '',
+    kuormaPK: '',
+    kuormaPM: '',
+    barType: '',
+    maxM: '',
+    maxV: '',
+    dateOfJoining: '',
+    photoFileName: ''
 }
 
 const TulosForm = ({ classes, ...props }) => {
@@ -43,10 +53,10 @@ const TulosForm = ({ classes, ...props }) => {
     // Syötettävien arvojen validointi
     const validate = (fieldValues = values) => {
         let temp = { ...errors }
-        if ('tyyppi' in fieldValues)
-            temp.tyyppi = fieldValues.tyyppi ? "" : "This field is required."
-        if ('kuvaus' in fieldValues)
-            temp.kuvaus = fieldValues.kuvaus ? "" : "This field is required."
+        if ('nimi' in fieldValues)
+            temp.nimi = fieldValues.nimi ? "" : "This field is required."
+        if ('pituusL' in fieldValues)
+            temp.pituusL = fieldValues.pituusL ? "" : "This field is required."
         setErrors({
             ...temp
         })
@@ -95,20 +105,101 @@ const TulosForm = ({ classes, ...props }) => {
             <Grid container>
                 <Grid item xs={6}>
                     <TextField
-                        name="tyyppi"
+                        name="nimi"
                         variant="outlined"
-                        label="Tyyppi"
-                        value={values.tyyppi}
+                        label="Nimi"
+                        value={values.nimi}
                         onChange={handleInputChange}
-                        {...(errors.tyyppi && { error: true, helperText: errors.tyyppi })}
+                        {...(errors.nimi && { error: true, helperText: errors.nimi })}
                     />
                     <TextField
-                        name="kuvaus"
+                        name="pituusL"
                         variant="outlined"
-                        label="Kuvaus"
-                        value={values.kuvaus}
+                        label="PituusL"
+                        value={values.pituusL}
                         onChange={handleInputChange}
-                        {...(errors.kuvaus && { error: true, helperText: errors.kuvaus })}
+                        {...(errors.pituusL && { error: true, helperText: errors.pituusL })}
+                    />
+
+                    <TextField
+                        name="pituusA"
+                        variant="outlined"
+                        label="pituusA"
+                        value={values.pituusA}
+                        onChange={handleInputChange}
+                        {...(errors.pituusA && { error: true, helperText: errors.pituusA })}
+                    />
+                    <TextField
+                        name="pituusB"
+                        variant="outlined"
+                        label="pituusB"
+                        value={values.pituusB}
+                        onChange={handleInputChange}
+                        {...(errors.pituusB && { error: true, helperText: errors.pituusB })}
+                    />
+                    <TextField
+                        name="kuormaTV"
+                        variant="outlined"
+                        label="kuormaTV"
+                        value={values.kuormaTV}
+                        onChange={handleInputChange}
+                        {...(errors.kuormaTV && { error: true, helperText: errors.kuormaTV })}
+                    />
+                    <TextField
+                        name="kuormaPK"
+                        variant="outlined"
+                        label="kuormaPK"
+                        value={values.kuormaPK}
+                        onChange={handleInputChange}
+                        {...(errors.kuormaPK && { error: true, helperText: errors.kuormaPK })}
+                    />
+                    <TextField
+                        name="kuormaPM"
+                        variant="outlined"
+                        label="kuormaPM"
+                        value={values.kuormaPM}
+                        onChange={handleInputChange}
+                        {...(errors.kuormaPM && { error: true, helperText: errors.kuormaPM })}
+                    />
+                    <TextField
+                        name="barType"
+                        variant="outlined"
+                        label="barType"
+                        value={values.barType}
+                        onChange={handleInputChange}
+                        {...(errors.barType && { error: true, helperText: errors.barType })}
+                    />
+                    <TextField
+                        name="maxM"
+                        variant="outlined"
+                        label="maxM"
+                        value={values.maxM}
+                        onChange={handleInputChange}
+                        {...(errors.maxM && { error: true, helperText: errors.maxM })}
+                    />
+                    <TextField
+                        name="maxV"
+                        variant="outlined"
+                        label="maxV"
+                        value={values.maxV}
+                        onChange={handleInputChange}
+                        {...(errors.maxV && { error: true, helperText: errors.maxV })}
+                    />
+                    <TextField
+                        name="dateOfJoining"
+                        variant="outlined"
+                        label="dateOfJoining"
+                        value={values.dateOfJoining}
+                        onChange={handleInputChange}
+                        {...(errors.dateOfJoining && { error: true, helperText: errors.dateOfJoining })}
+                    />
+                    <TextField
+                        name="photoFileName"
+                        variant="outlined"
+                        label="photoFileName"
+                        value={values.photoFileName}
+                        onChange={handleInputChange}
+                        {...(errors.photoFileName && { error: true, helperText: errors.photoFileName })}
                     />
 
                     <div>

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BeDaGKc0Em5TFd8HpxipB8YFOKxHJXjl+UjyFzih72c1+rE7OBbq3AUOBG7IEVrhLW/d64h7Wdk0ZPoVG+5BbQ==",
+  "dgSpecHash": "QV5z0bgCPM3KfIWrjnC+yM7QHqUDdEvvJE2Ts0QjZOWBwNyJfpczY767e2mLqbDhTrsn5UFkBMVaUjTIeWhbbg==",
   "success": true,
-  "projectFilePath": "C:\\Savonia\\ChartJS\\WebApp\\WebApp.csproj",
+  "projectFilePath": "C:\\Timon_tyot\\TimonKoodaus\\React-CRUD-with-Asp.Net-Core-Web-API\\WebApp\\WebApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\OMISTAJA\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
     "C:\\Users\\OMISTAJA\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

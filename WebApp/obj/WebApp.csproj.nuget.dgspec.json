@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Savonia\\ChartJS\\WebApp\\WebApp.csproj": {}
+    "C:\\Timon_tyot\\TimonKoodaus\\React-CRUD-with-Asp.Net-Core-Web-API\\WebApp\\WebApp.csproj": {}
   },
   "projects": {
-    "C:\\Savonia\\ChartJS\\WebApp\\WebApp.csproj": {
+    "C:\\Timon_tyot\\TimonKoodaus\\React-CRUD-with-Asp.Net-Core-Web-API\\WebApp\\WebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Savonia\\ChartJS\\WebApp\\WebApp.csproj",
+        "projectUniqueName": "C:\\Timon_tyot\\TimonKoodaus\\React-CRUD-with-Asp.Net-Core-Web-API\\WebApp\\WebApp.csproj",
         "projectName": "WebApp",
-        "projectPath": "C:\\Savonia\\ChartJS\\WebApp\\WebApp.csproj",
+        "projectPath": "C:\\Timon_tyot\\TimonKoodaus\\React-CRUD-with-Asp.Net-Core-Web-API\\WebApp\\WebApp.csproj",
         "packagesPath": "C:\\Users\\OMISTAJA\\.nuget\\packages\\",
-        "outputPath": "C:\\Savonia\\ChartJS\\WebApp\\obj\\",
+        "outputPath": "C:\\Timon_tyot\\TimonKoodaus\\React-CRUD-with-Asp.Net-Core-Web-API\\WebApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

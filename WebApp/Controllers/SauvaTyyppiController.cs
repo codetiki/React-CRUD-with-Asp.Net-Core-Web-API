@@ -47,7 +47,7 @@ namespace WebApp.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSauvaTyyppi(int id, SauvaTyyppi sauvaTyyppi)
         {
-            sauvaTyyppi.id = id;
+            sauvaTyyppi.Id = id;
 
             _context.Entry(sauvaTyyppi).State = EntityState.Modified;
 
@@ -79,7 +79,7 @@ namespace WebApp.Controllers
             _context.Sauvatyypit.Add(sauvaTyyppi);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetSauvaTyyppi", new { id = sauvaTyyppi.id }, sauvaTyyppi);
+            return CreatedAtAction("GetSauvaTyyppi", new { id = sauvaTyyppi.Id }, sauvaTyyppi);
         }
 
         // DELETE: api/SauvaTyyppi/5
@@ -100,7 +100,7 @@ namespace WebApp.Controllers
 
         private bool SauvaTyyppiExists(int id)
         {
-            return _context.Sauvatyypit.Any(e => e.id == id);
+            return _context.Sauvatyypit.Any(e => e.Id == id);
         }
     }
 }

@@ -47,7 +47,7 @@ namespace WebApp.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTulos(int id, Tulos tulos)
         {
-            tulos.ResultId = id;
+            tulos.Id = id;
 
             _context.Entry(tulos).State = EntityState.Modified;
 
@@ -79,7 +79,7 @@ namespace WebApp.Controllers
             _context.Tulokset.Add(tulos);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTulos", new { id = tulos.ResultId }, tulos);
+            return CreatedAtAction("GetTulos", new { id = tulos.Id }, tulos);
         }
 
         // DELETE: api/Tulos/5
@@ -100,7 +100,7 @@ namespace WebApp.Controllers
 
         private bool TulosExists(int id)
         {
-            return _context.Tulokset.Any(e => e.ResultId == id);
+            return _context.Tulokset.Any(e => e.Id == id);
         }
     }
 }

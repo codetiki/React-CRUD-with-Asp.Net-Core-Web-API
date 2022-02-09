@@ -10,7 +10,7 @@ namespace WebApp.Models
     public class Tulos
     {
         [Key]
-        public int ResultId { get; set; }
+        public int Id { get; set; }
         [Column(TypeName = "nvarchar(500)")]
         public string Nimi { get; set; }
         [Column(TypeName = "nvarchar(500)")]
