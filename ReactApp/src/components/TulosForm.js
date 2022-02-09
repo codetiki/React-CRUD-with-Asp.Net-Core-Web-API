@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, TextField, withStyles, FormControl, InputLabel, Select, MenuItem, Button, FormHelperText } from "@material-ui/core";
+import { Grid, TextField, withStyles, FormControl, InputLabel, Select, MenuItem, Button, FormHelperText, Option } from "@material-ui/core";
 import useForm from "./useForm";
 import { connect } from "react-redux";
 import * as actions from "../actions/Tulos";
@@ -161,6 +161,7 @@ const TulosForm = ({ classes, ...props }) => {
                         onChange={handleInputChange}
                         {...(errors.kuormaPM && { error: true, helperText: errors.kuormaPM })}
                     />
+
                     <TextField
                         name="forceType"
                         variant="outlined"
@@ -169,6 +170,34 @@ const TulosForm = ({ classes, ...props }) => {
                         onChange={handleInputChange}
                         {...(errors.forceType && { error: true, helperText: errors.forceType })}
                     />
+
+
+                    {/*
+                    <FormControl variant="outlined"
+                        className={classes.formControl}
+                        {...(errors.forceType && { error: true })}
+                    >
+
+                        <Select
+                            name="forceType"
+                            value={values.forceType}
+                            onChange={handleInputChange}
+                        >
+
+                            {props.KuormaTyyppiList.map((record, index) => {
+                                return (
+                                    <MenuItem key={index} value={record.tyyppi}>
+                                        {record.tyyppi}
+                                    </MenuItem>)
+                            })}
+                        </Select>
+
+                    </FormControl>
+
+                    */}
+
+
+
                     <TextField
                         name="maxM"
                         variant="outlined"
@@ -230,7 +259,8 @@ const TulosForm = ({ classes, ...props }) => {
 }
 
 const mapStateToProps = state => ({
-    TulosList: state.Tulos.list
+    TulosList: state.Tulos.list,
+    KuormaTyyppiList: state.KuormaTyyppi.list2
 })
 
 const mapActionToProps = {
