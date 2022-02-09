@@ -53,6 +53,18 @@ https://www.youtube.com/watch?v=NemyDIUcC64
 ...jatka kohdasta 1.04
 https://github.com/CodAffection/React-CRUD-with-Asp.Net-Core-Web-API
 
+## Backend: KuormaTyyppi-taulun luonti Tietokannan migraation avulla
+1. Luo Models-kansioon KuormaTyyppi.cs luokka
+   ![Kuva](./src/images/KuormaTyyppi.cs.JPG)
+2. Luo Controller-kansioon KuormaTyyppiController.cs EF:n avulla
+   ![Kuva](./src/images/KuormaTyyppiController.cs.JPG)
+3. Luo Models-kansioon BarDBContext.cs filuun luotavien tietokannan taulun nimi "KuormaTyypit" 
+4. Lisää appsettings.json filuun yhteys tietokantaan "ConnectionStrings"
+5. Luo migraatio "Add-Migration "InitialCreate""-käskyllä (Package Manager Console:ssa)
+6. Päivitä tietokanta "Update-Database"-käskyllä (Package Manager Console:ssa)
+   ![Kuva](./src/images/SQLServer_KuormaTyypit-table.JPG)
+
+
 
 
 

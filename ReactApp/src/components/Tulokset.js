@@ -64,7 +64,7 @@ const Tulokset = ({ classes, ...props }) => {
                                     <TableCell>Kuorma TV</TableCell>
                                     <TableCell>Kuorma PK</TableCell>
                                     <TableCell>Kuorma PM</TableCell>
-                                    <TableCell>SauvaTyyppi</TableCell>
+                                    <TableCell>KuormaTyyppi</TableCell>
                                     <TableCell>Max M</TableCell>
                                     <TableCell>Max V</TableCell>
                                     <TableCell>dateOfJoining</TableCell>
@@ -83,7 +83,7 @@ const Tulokset = ({ classes, ...props }) => {
                                             <TableCell>{record.kuormaTV}</TableCell>
                                             <TableCell>{record.kuormaPK}</TableCell>
                                             <TableCell>{record.kuormaPM}</TableCell>
-                                            <TableCell>{record.barType}</TableCell>
+                                            <TableCell>{record.forceType}</TableCell>
                                             <TableCell>{record.maxM}</TableCell>
                                             <TableCell>{record.maxV}</TableCell>
                                             <TableCell>{record.dateOfJoining}</TableCell>

@@ -7,7 +7,7 @@ namespace WebApp.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Sauvatyypit",
+                name: "KuormaTyypit",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -17,7 +17,7 @@ namespace WebApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sauvatyypit", x => x.Id);
+                    table.PrimaryKey("PK_KuormaTyypit", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -33,7 +33,7 @@ namespace WebApp.Migrations
                     KuormaTV = table.Column<string>(type: "nvarchar(500)", nullable: true),
                     KuormaPK = table.Column<string>(type: "nvarchar(500)", nullable: true),
                     KuormaPM = table.Column<string>(type: "nvarchar(500)", nullable: true),
-                    BarType = table.Column<string>(type: "nvarchar(500)", nullable: true),
+                    ForceType = table.Column<string>(type: "nvarchar(500)", nullable: true),
                     MaxM = table.Column<string>(type: "nvarchar(500)", nullable: true),
                     MaxV = table.Column<string>(type: "nvarchar(500)", nullable: true),
                     DateOfJoining = table.Column<string>(type: "nvarchar(500)", nullable: true),
@@ -48,7 +48,7 @@ namespace WebApp.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Sauvatyypit");
+                name: "KuormaTyypit");
 
             migrationBuilder.DropTable(
                 name: "Tulokset");

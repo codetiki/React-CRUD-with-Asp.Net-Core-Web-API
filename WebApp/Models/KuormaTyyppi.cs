@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WebApp.Models
 {
-    public class SauvaTyyppi
+    public class KuormaTyyppi
     {
         [Key]
         public int Id { get; set; }

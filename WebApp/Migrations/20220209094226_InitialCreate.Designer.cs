@@ -9,7 +9,7 @@ using WebApp.Models;
 namespace WebApp.Migrations
 {
     [DbContext(typeof(BarDBContext))]
-    [Migration("20220209062356_InitialCreate")]
+    [Migration("20220209094226_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,7 +20,7 @@ namespace WebApp.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("WebApp.Models.SauvaTyyppi", b =>
+            modelBuilder.Entity("WebApp.Models.KuormaTyyppi", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -35,7 +35,7 @@ namespace WebApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sauvatyypit");
+                    b.ToTable("KuormaTyypit");
                 });
 
             modelBuilder.Entity("WebApp.Models.Tulos", b =>
@@ -45,10 +45,10 @@ namespace WebApp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BarType")
+                    b.Property<string>("DateOfJoining")
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("DateOfJoining")
+                    b.Property<string>("ForceType")
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("KuormaPK")

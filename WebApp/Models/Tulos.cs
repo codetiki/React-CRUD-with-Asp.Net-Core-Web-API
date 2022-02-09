@@ -26,7 +26,7 @@ namespace WebApp.Models
         [Column(TypeName = "nvarchar(500)")]
         public string KuormaPM { get; set; }
         [Column(TypeName = "nvarchar(500)")]
-        public string BarType { get; set; }
+        public string ForceType { get; set; }
         [Column(TypeName = "nvarchar(500)")]
         public string MaxM { get; set; }
         [Column(TypeName = "nvarchar(500)")]

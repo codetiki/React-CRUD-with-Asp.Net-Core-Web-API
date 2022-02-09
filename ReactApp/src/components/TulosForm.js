@@ -162,12 +162,12 @@ const TulosForm = ({ classes, ...props }) => {
                         {...(errors.kuormaPM && { error: true, helperText: errors.kuormaPM })}
                     />
                     <TextField
-                        name="barType"
+                        name="forceType"
                         variant="outlined"
-                        label="barType"
-                        value={values.barType}
+                        label="forceType"
+                        value={values.forceType}
                         onChange={handleInputChange}
-                        {...(errors.barType && { error: true, helperText: errors.barType })}
+                        {...(errors.forceType && { error: true, helperText: errors.forceType })}
                     />
                     <TextField
                         name="maxM"

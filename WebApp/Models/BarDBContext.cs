@@ -13,7 +13,7 @@ namespace WebApp.Models
 
         }
 
-        public DbSet<SauvaTyyppi> Sauvatyypit { get; set; }
+        public DbSet<KuormaTyyppi> KuormaTyypit { get; set; }
         public DbSet<Tulos> Tulokset { get; set; }
 
     }
