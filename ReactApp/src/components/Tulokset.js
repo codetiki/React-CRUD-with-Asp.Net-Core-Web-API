@@ -49,10 +49,10 @@ const Tulokset = ({ classes, ...props }) => {
     return (
         <Paper className={classes.paper} elevation={3} >
             <Grid container>
-                <Grid item xs={6}>
+                <Grid item xs={2}>
                     <TulosForm {...({ currentId, setCurrentId })} />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={10}>
                     <TableContainer>
                         <Table>
                             <TableHead className={classes.root}>

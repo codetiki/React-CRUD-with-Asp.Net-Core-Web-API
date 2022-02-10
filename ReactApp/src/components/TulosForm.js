@@ -71,7 +71,8 @@ const TulosForm = ({ classes, ...props }) => {
         errors,
         setErrors,
         handleInputChange,
-        resetForm
+        resetForm,
+        calculateParameterForm
     } = useForm(initialFieldValues, validate, props.setCurrentId)
 
     const handleSubmit = e => {
@@ -161,8 +162,8 @@ const TulosForm = ({ classes, ...props }) => {
                         onChange={handleInputChange}
                         {...(errors.kuormaPM && { error: true, helperText: errors.kuormaPM })}
                     />
-
-                    <TextField
+                    {/*
+                        <TextField
                         name="forceType"
                         variant="outlined"
                         label="forceType"
@@ -170,14 +171,16 @@ const TulosForm = ({ classes, ...props }) => {
                         onChange={handleInputChange}
                         {...(errors.forceType && { error: true, helperText: errors.forceType })}
                     />
+                     */}
 
 
-                    {/*
+
+
                     <FormControl variant="outlined"
                         className={classes.formControl}
                         {...(errors.forceType && { error: true })}
                     >
-
+                        <InputLabel >ForceType</InputLabel>
                         <Select
                             name="forceType"
                             value={values.forceType}
@@ -193,10 +196,6 @@ const TulosForm = ({ classes, ...props }) => {
                         </Select>
 
                     </FormControl>
-
-                    */}
-
-
 
                     <TextField
                         name="maxM"
@@ -246,6 +245,13 @@ const TulosForm = ({ classes, ...props }) => {
                             onClick={resetForm}
                         >
                             Reset
+                        </Button>
+                        <Button
+                            variant="contained"
+                            className={classes.smMargin}
+                            onClick={calculateParameterForm}
+                        >
+                            CalculateParameter
                         </Button>
                     </div>
 

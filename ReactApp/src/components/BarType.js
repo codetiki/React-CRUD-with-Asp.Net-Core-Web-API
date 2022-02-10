@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { Table } from 'react-bootstrap';
 
-import { AddBarTypeModal } from './AddBarTypeModal';
+
 
 
 
@@ -18,7 +18,7 @@ const BarType = () => {
     // Fetch Tulokset
     useEffect(() => {
         const fetchResults = async () => {
-            const res = await fetch(process.env.REACT_APP_API + 'bartype')
+            const res = await fetch(process.env.REACT_APP_API + 'KuormaTyyppi')
             const data = await res.json()
             setBarTypes(data);
             console.log("data :", data);

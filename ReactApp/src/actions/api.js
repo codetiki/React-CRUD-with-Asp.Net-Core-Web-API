@@ -13,9 +13,9 @@ export default {
         }
     },
 
-    KuormaTyyppi(url = baseurl + 'KuormaTyyppi/') {
+    KuormaTyyppi(url2 = baseurl + 'KuormaTyyppi/') {
         return {
-            fetchAll2: () => axios.get(url)
+            fetchAll2: () => axios.get(url2)
         }
     }
 }

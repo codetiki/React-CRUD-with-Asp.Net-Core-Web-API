@@ -29,6 +29,7 @@ export const Tulos = (state = inititalState, action) => {
                 list: state.list.filter(x => x.id != action.payload)
             }
 
+
         default:
             return state
     }

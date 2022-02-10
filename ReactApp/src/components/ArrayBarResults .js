@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Table } from 'react-bootstrap';
 // import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 // import Data from "../db.json";
+import useForm from "./useForm";
 
 
 
@@ -32,6 +33,8 @@ const ArrayBarResults = (props) => {
         formData,
         setFormData
     } = props;
+
+
 
 
     // pyyntö POST fetch-kutsuun
