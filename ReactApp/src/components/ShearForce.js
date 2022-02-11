@@ -22,6 +22,15 @@ const ShearForce = (props) => {
     let [shearForce, setshearForce] = useState([]);
     let s5 = 0;
     let L = Number(lengthA) + Number(lengthB);
+    let pituusL = 0;
+    let pituusA = 0;
+    let pituusB = 0;
+    let kuormaTV = 0;
+    let kuormaPK = 0;
+    let kuormaPM = 0;
+    let tyyppi = 0;
+    let kokonaisPituus = 0;
+    let s5_backend = 0;
 
     const [maxShear_backend, setMaxShear_backend] = useState("");
 
@@ -30,17 +39,17 @@ const ShearForce = (props) => {
     // V = -q/2 * (L + x)
     const calculateShearForce = () => {
         // Parametri TulosForm.js:stä
-        let pituus = arvot.pituusL;
-        let kuorma = arvot.kuormaTV;
-
+        pituusL = arvot.pituusL;
+        pituusA = arvot.pituusA;
+        pituusB = arvot.pituusB;
+        kuormaTV = arvot.kuormaTV;
+        kuormaPK = arvot.kuormaPK;
+        kuormaPM = arvot.kuormaPM;
+        tyyppi = arvot.forceType;
+        console.log("tyyppi: ", tyyppi);
         // lasketaan leikausvoima-arvot taulukkoon
         let shearForces = [];
 
-        // backend laskenta
-        let s5_backend = - kuorma * (pituus) / 2;
-        console.log("s5_backend:", s5_backend); // tulee luku
-        setMaxShear_backend(s5_backend);
-        maxShearChange_backend(s5_backend);
 
         // TV-mom laskenta kunnossa
         if (forceType == "TV") {
@@ -60,6 +69,13 @@ const ShearForce = (props) => {
             shearChange(shearForces);
             maxShearChange(s5);
         }
+        if (tyyppi == "TV") {
+            // backend laskenta
+            s5_backend = - kuormaTV * (pituusL) / 2;
+            console.log("s5_backend:", s5_backend); // tulee luku
+            setMaxShear_backend(s5_backend);
+            maxShearChange_backend(s5_backend);
+        }
         // PK-shear laskenta kunnossa
         if (forceType == "PK") {
             if (lengthA > lengthB) {
@@ -67,7 +83,7 @@ const ShearForce = (props) => {
                 console.log("max shearForce:", s5);
                 setMaxShearForce(s5);
                 setFormData({ ...formData, maxV: s5 });
-            } else if (lengthA < lengthB) {
+            } else if (lengthA <= lengthB) {
                 s5 = - pointForce * lengthB / L;
                 console.log("max shearForce:", s5);
                 setMaxShearForce(s5);
@@ -91,6 +107,26 @@ const ShearForce = (props) => {
             shearChange(shearForces);
             maxShearChange(s5);
         }
+        if (tyyppi == "PK") {
+            // backend laskenta
+
+            kokonaisPituus = Number(pituusA) + Number(pituusB);
+            if (pituusA > pituusB) {
+                s5_backend = - kuormaPK * (pituusA) / kokonaisPituus;
+                console.log("s5_backend:", s5_backend); // tulee luku
+                setMaxShear_backend(s5_backend);
+                maxShearChange_backend(s5_backend);
+            } else if (pituusA <= pituusB) {
+                console.log(kuormaPK);
+                console.log(pituusB);
+                console.log(kokonaisPituus);
+                s5_backend = - kuormaPK * (pituusB) / kokonaisPituus;
+                console.log("s5_backend:", s5_backend); // tulee luku
+                setMaxShear_backend(s5_backend);
+                maxShearChange_backend(s5_backend);
+            }
+        }
+
         // PM-shear laskenta kunnossa
         if (forceType == "PM") {
 
@@ -109,6 +145,14 @@ const ShearForce = (props) => {
 
             shearChange(shearForces);
             maxShearChange(s5);
+        }
+        if (tyyppi == "PM") {
+            // backend laskenta
+            kokonaisPituus = Number(pituusA) + Number(pituusB);
+            s5_backend = - kuormaPM / kokonaisPituus;
+            console.log("s5_backend:", s5_backend); // tulee luku
+            setMaxShear_backend(s5_backend);
+            maxShearChange_backend(s5_backend);
         }
 
 

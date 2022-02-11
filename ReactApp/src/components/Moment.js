@@ -33,6 +33,15 @@ const Moment = (props) => {
     let [moment, setMoment] = useState([]);
     let [barMomentResults, setBarMomentResults] = useState([{ numero: "", pituus: "", kuorma: "", tyyppi: "", maxM: "" }]); // Tähän laitetaan lasketut tulokset
     let L = Number(lengthA) + Number(lengthB);
+    let pituusL = 0;
+    let pituusA = 0;
+    let pituusB = 0;
+    let kuormaTV = 0;
+    let kuormaPK = 0;
+    let kuormaPM = 0;
+    let tyyppi = 0;
+    let kokonaisPituus = 0;
+    let m5_backend = 0;
 
     const [maxMoment_backend, setMaxMoment_backend] = useState("");
     // Palkin momentti
@@ -41,18 +50,15 @@ const Moment = (props) => {
     // V = -q/2 * (L + x)
     const calculateMomentLineload = () => {
         // Parametri TulosForm.js:stä
-        let pituus = arvot.pituusL;
-        let kuorma = arvot.kuormaTV;
-
+        pituusL = arvot.pituusL;
+        pituusA = arvot.pituusA;
+        pituusB = arvot.pituusB;
+        kuormaTV = arvot.kuormaTV;
+        kuormaPK = arvot.kuormaPK;
+        kuormaPM = arvot.kuormaPM;
+        tyyppi = arvot.forceType;
         // lasketaan momentti-arvot taulukkoon
         let moments = [];
-
-        // backend laskenta
-        let m5_backend = kuorma * (5 * pituus / 10) * ((5 * pituus / 10) - pituus) / 2;
-        console.log("m5_backend:", m5_backend); // tulee luku
-        setMaxMoment_backend(m5_backend);
-        maxMomentChange_backend(m5_backend);
-
 
         // TV-mom laskenta kunnossa
         if (forceType == "TV") {
@@ -81,6 +87,13 @@ const Moment = (props) => {
             maxMomentChange(m5);
 
         }
+        if (tyyppi == "TV") {
+            // backend laskenta
+            m5_backend = kuormaTV * (5 * pituusL / 10) * ((5 * pituusL / 10) - pituusL) / 2;
+            console.log("m5_backend:", m5_backend); // tulee luku
+            setMaxMoment_backend(m5_backend);
+            maxMomentChange_backend(m5_backend);
+        }
         // PK-mom laskenta kunnossa
         if (forceType == "PK") {
             let m5 = - pointForce * lengthB * lengthA / L;
@@ -105,6 +118,15 @@ const Moment = (props) => {
             momentChange(moments);
             maxMomentChange(m5);
         }
+        if (tyyppi == "PK") {
+            // backend laskenta
+            kokonaisPituus = Number(pituusA) + Number(pituusB);
+            console.log("kokonaisPituus: ", kokonaisPituus);
+            m5_backend = - kuormaPK * pituusB * pituusA / kokonaisPituus;
+            console.log("m5_backend:", m5_backend); // tulee luku
+            setMaxMoment_backend(m5_backend);
+            maxMomentChange_backend(m5_backend);
+        }
 
         // PM-mom laskenta kunnossa
         if (forceType == "PM") {
@@ -114,7 +136,7 @@ const Moment = (props) => {
                 console.log("max moment PM:", m5);
                 setMaxMoment(m5);
                 setFormData({ ...formData, maxM: m5 });
-            } else if (lengthA < lengthB) {
+            } else if (lengthA <= lengthB) {
                 m5 = - pointMoment * lengthB / L;
                 console.log("max moment PM:", m5);
                 setMaxMoment(m5);
@@ -138,6 +160,21 @@ const Moment = (props) => {
 
             momentChange(moments);
             maxMomentChange(m5);
+        }
+        if (tyyppi == "PM") {
+            // backend laskenta
+            kokonaisPituus = Number(pituusA) + Number(pituusB);
+            if (pituusA > pituusB) {
+                m5_backend = - kuormaPM * pituusA / kokonaisPituus;
+                console.log("m5_backend:", m5_backend); // tulee luku
+                setMaxMoment_backend(m5_backend);
+                maxMomentChange_backend(m5_backend);
+            } else if (pituusA <= pituusB) {
+                m5_backend = - kuormaPM * pituusB / kokonaisPituus;
+                console.log("m5_backend:", m5_backend); // tulee luku
+                setMaxMoment_backend(m5_backend);
+                maxMomentChange_backend(m5_backend);
+            }
         }
 
     }

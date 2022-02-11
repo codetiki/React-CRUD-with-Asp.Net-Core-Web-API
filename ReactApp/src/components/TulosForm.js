@@ -220,7 +220,8 @@ const TulosForm = ({ classes, ...props }) => {
                             <InputLabel >ForceType</InputLabel>
                             <Select
                                 name="forceType"
-                                value={values.forceType}
+                                defaultValue=""
+                                value={values.forceType ?? ""}
                                 onChange={handleInputChange}
                             >
 
