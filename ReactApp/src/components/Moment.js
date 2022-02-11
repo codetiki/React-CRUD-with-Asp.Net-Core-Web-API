@@ -1,5 +1,5 @@
 import { format } from 'morgan';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 
 const Moment = (props) => {
@@ -15,28 +15,56 @@ const Moment = (props) => {
         maxMomentChange,
         forceType,
         formData,
-        setFormData
+        setFormData,
+        arvot,
+        maxMomentChange_backend
     } = props;
+
+    /*
+    // TESTI POISTA
+    useEffect(() => {
+        console.log("arvot.pituusL :", arvot.pituusL);
+        console.log("arvot.kuormaTV :", arvot.kuormaTV);
+        //console.log("arvot.pituusL :", arvot.pituusL);
+    }, [arvot])
+    */
+
     const [maxMoment, setMaxMoment] = useState("");
     let [moment, setMoment] = useState([]);
     let [barMomentResults, setBarMomentResults] = useState([{ numero: "", pituus: "", kuorma: "", tyyppi: "", maxM: "" }]); // Tähän laitetaan lasketut tulokset
     let L = Number(lengthA) + Number(lengthB);
+
+    const [maxMoment_backend, setMaxMoment_backend] = useState("");
     // Palkin momentti
     // tasainen kuorma q [kN/m]
     // M = q*x/2 * (x - L)
     // V = -q/2 * (L + x)
     const calculateMomentLineload = () => {
+        // Parametri TulosForm.js:stä
+        let pituus = arvot.pituusL;
+        let kuorma = arvot.kuormaTV;
+
         // lasketaan momentti-arvot taulukkoon
         let moments = [];
+
+        // backend laskenta
+        let m5_backend = kuorma * (5 * pituus / 10) * ((5 * pituus / 10) - pituus) / 2;
+        console.log("m5_backend:", m5_backend); // tulee luku
+        setMaxMoment_backend(m5_backend);
+        maxMomentChange_backend(m5_backend);
+
 
         // TV-mom laskenta kunnossa
         if (forceType == "TV") {
             let m5 = load * (5 * length / 10) * ((5 * length / 10) - length) / 2;
+
             console.log("max moment [q=force] (1/8*q*L^2):", m5);
             setMaxMoment(m5);
+
             // haetaan taulukkoon momentin maksimiarvo
             setFormData({ ...formData, maxM: m5 });
             console.log("formData: ", formData);
+
 
             let numero = 1;
 
@@ -51,6 +79,7 @@ const Moment = (props) => {
             }
             momentChange(moments);
             maxMomentChange(m5);
+
         }
         // PK-mom laskenta kunnossa
         if (forceType == "PK") {

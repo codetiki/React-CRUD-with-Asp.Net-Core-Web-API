@@ -14,19 +14,33 @@ const ShearForce = (props) => {
         maxShearChange,
         forceType,
         formData,
-        setFormData
+        setFormData,
+        arvot,
+        maxShearChange_backend
     } = props;
     const [maxShearForce, setMaxShearForce] = useState("");
     let [shearForce, setshearForce] = useState([]);
     let s5 = 0;
     let L = Number(lengthA) + Number(lengthB);
 
+    const [maxShear_backend, setMaxShear_backend] = useState("");
+
     // Palkin momentti
     // tasainen kuorma q [kN/m]
     // V = -q/2 * (L + x)
     const calculateShearForce = () => {
+        // Parametri TulosForm.js:stä
+        let pituus = arvot.pituusL;
+        let kuorma = arvot.kuormaTV;
+
         // lasketaan leikausvoima-arvot taulukkoon
         let shearForces = [];
+
+        // backend laskenta
+        let s5_backend = - kuorma * (pituus) / 2;
+        console.log("s5_backend:", s5_backend); // tulee luku
+        setMaxShear_backend(s5_backend);
+        maxShearChange_backend(s5_backend);
 
         // TV-mom laskenta kunnossa
         if (forceType == "TV") {

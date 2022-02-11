@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-
 const useForm = (initialFieldValues, validate, setCurrentId) => {
     const [values, setValues] = useState(initialFieldValues)
     const [errors, setErrors] = useState({})
@@ -23,13 +22,7 @@ const useForm = (initialFieldValues, validate, setCurrentId) => {
         setCurrentId(0)
     }
 
-    // Lisätään tähän muuttujat, joita tarvitaan maxM ja maxV laskentaan
-    const calculateParameterForm = () => {
-        setValues({
-            ...values
-        })
-        console.log("values: ", values);
-    }
+
 
     return {
         values,
@@ -37,8 +30,8 @@ const useForm = (initialFieldValues, validate, setCurrentId) => {
         errors,
         setErrors,
         handleInputChange,
-        resetForm,
-        calculateParameterForm
+        resetForm
+
     };
 }
 
