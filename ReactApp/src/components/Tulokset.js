@@ -5,7 +5,7 @@ import { Grid, Paper, TableContainer, Table, TableHead, TableRow, TableCell, Tab
 import TulosForm from "./TulosForm";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { useToasts } from "react-toast-notifications";
+
 
 
 const styles = theme => ({
@@ -58,12 +58,12 @@ const Tulokset = ({ classes, ...props }) => {
                             <TableHead className={classes.root}>
                                 <TableRow>
                                     <TableCell>Nimi</TableCell>
-                                    <TableCell>Pituus L</TableCell>
-                                    <TableCell>Pituus A</TableCell>
-                                    <TableCell>Pituus B</TableCell>
-                                    <TableCell>Kuorma TV</TableCell>
-                                    <TableCell>Kuorma PK</TableCell>
-                                    <TableCell>Kuorma PM</TableCell>
+                                    <TableCell>L</TableCell>
+                                    <TableCell>A</TableCell>
+                                    <TableCell>B</TableCell>
+                                    <TableCell>KuormaTV</TableCell>
+                                    <TableCell>KuormaPK</TableCell>
+                                    <TableCell>KuormaPM</TableCell>
                                     <TableCell>KuormaTyyppi</TableCell>
                                     <TableCell>Max M</TableCell>
                                     <TableCell>Max V</TableCell>

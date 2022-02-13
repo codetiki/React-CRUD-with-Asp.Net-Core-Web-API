@@ -1,4 +1,4 @@
-import { format } from 'morgan';
+// import { format } from 'morgan';
 import React, { useState, useEffect } from 'react'
 
 
@@ -17,7 +17,8 @@ const Moment = (props) => {
         formData,
         setFormData,
         arvot,
-        maxMomentChange_backend
+        maxMomentChange_backend,
+        hide
     } = props;
 
     /*
@@ -44,6 +45,18 @@ const Moment = (props) => {
     let m5_backend = 0;
 
     const [maxMoment_backend, setMaxMoment_backend] = useState("");
+
+    // Parametri TulosForm.js:stä
+    if (arvot) {
+        pituusL = arvot.pituusL;
+        pituusA = arvot.pituusA;
+        pituusB = arvot.pituusB;
+        kuormaTV = arvot.kuormaTV;
+        kuormaPK = arvot.kuormaPK;
+        kuormaPM = arvot.kuormaPM;
+        tyyppi = arvot.forceType;
+        console.log("tyyppi: ", tyyppi);
+    }
     // Palkin momentti
     // tasainen kuorma q [kN/m]
     // M = q*x/2 * (x - L)
@@ -179,10 +192,53 @@ const Moment = (props) => {
 
     }
 
-    return (
-        <div>
-            <button onClick={calculateMomentLineload}>Laske momentti</button>
+    // Laskee automaattisesti tulokset, kun muuttujat luotu
+    useEffect(() => {
+        if (tyyppi == "TV") {
+            // backend laskenta
+            m5_backend = kuormaTV * (5 * pituusL / 10) * ((5 * pituusL / 10) - pituusL) / 2;
+            console.log("m5_backend:", m5_backend); // tulee luku
+            setMaxMoment_backend(m5_backend);
+            maxMomentChange_backend(m5_backend);
+        }
+        if (tyyppi == "PK") {
+            // backend laskenta
+            kokonaisPituus = Number(pituusA) + Number(pituusB);
+            console.log("kokonaisPituus: ", kokonaisPituus);
+            m5_backend = - kuormaPK * pituusB * pituusA / kokonaisPituus;
+            console.log("m5_backend:", m5_backend); // tulee luku
+            setMaxMoment_backend(m5_backend);
+            maxMomentChange_backend(m5_backend);
+        }
+        if (tyyppi == "PM") {
+            // backend laskenta
+            kokonaisPituus = Number(pituusA) + Number(pituusB);
+            if (pituusA > pituusB) {
+                m5_backend = - kuormaPM * pituusA / kokonaisPituus;
+                console.log("m5_backend:", m5_backend); // tulee luku
+                setMaxMoment_backend(m5_backend);
+                maxMomentChange_backend(m5_backend);
+            } else if (pituusA <= pituusB) {
+                m5_backend = - kuormaPM * pituusB / kokonaisPituus;
+                console.log("m5_backend:", m5_backend); // tulee luku
+                setMaxMoment_backend(m5_backend);
+                maxMomentChange_backend(m5_backend);
+            }
+        }
+    }, [tyyppi != 0])
 
+    return (
+
+        <div>
+            {!hide ?
+                <div>
+                    <button onClick={calculateMomentLineload}>Laske momentti</button>
+                </div>
+                :
+                <div>
+
+                </div>
+            }
         </div>
 
     )

@@ -1,9 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, TextField, withStyles, FormControl, InputLabel, Select, MenuItem, Button, FormHelperText, Option } from "@material-ui/core";
+import { Grid, TextField, withStyles, FormControl, InputLabel, Select, MenuItem, Button } from "@material-ui/core";
+// import InputAdornment from '@mui/material/InputAdornment';
+// import AdapterDateFns from '@mui/lab/AdapterDateFns';
+// import LocalizationProvider from '@mui/lab/LocalizationProvider';
+// import {
+//     MuiPickersUtilsProvider,
+//     KeyboardDatePicker
+// } from '@material-ui/pickers';
+// import 'date-fns';
+// import DateFnsUtils from '@date-io/date-fns';
+// import { alpha } from '@material-ui/core/styles'
+// import DatePicker from '@mui/lab/DatePicker';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker';
 import useForm from "./useForm";
 import { connect } from "react-redux";
 import * as actions from "../actions/Tulos";
-import { ToastProvider, useToasts } from "react-toast-notifications";
 import Moment from './Moment';
 import ShearForce from './ShearForce';
 
@@ -27,16 +40,16 @@ const styles = theme => ({
 
 const initialFieldValues = {
     nimi: '',
-    pituusL: '',
-    pituusA: '',
-    pituusB: '',
-    kuormaTV: '',
-    kuormaPK: '',
-    kuormaPM: '',
+    pituusL: '0',
+    pituusA: '0',
+    pituusB: '0',
+    kuormaTV: '0',
+    kuormaPK: '0',
+    kuormaPM: '0',
     barType: '',
     maxM: '',
     maxV: '',
-    dateOfJoining: '',
+    dateOfJoining: new Date(),
     photoFileName: ''
 }
 
@@ -45,6 +58,9 @@ const TulosForm = ({ classes, ...props }) => {
     const [arvot, setArvot] = useState();
     const [maxMomentChange_backend, setMaxMomentChange_backend] = useState("");
     const [maxShearChange_backend, setMaxShearChange_backend] = useState("");
+    const [hide, setHide] = useState(true);
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [value, setValue] = useState(null);
     //toast msg.
     // const { addToast } = useToasts()
     /*
@@ -83,6 +99,7 @@ const TulosForm = ({ classes, ...props }) => {
     const handleSubmit = e => {
         e.preventDefault()
         console.log(values);
+        // setValues({ ...values, maxM: maxMomentChange_backend });
 
         if (validate()) {
             const onSuccess = () => {
@@ -114,30 +131,43 @@ const TulosForm = ({ classes, ...props }) => {
         console.log("values: ", values);
         console.log("values.pituusL: ", values.pituusL);
     }
+    /*
+    // Fetch Tulokset
+    useEffect(() => {
+        setArvot({
+            ...values
+        })
+        console.log("values: ", values);
+        console.log("values.pituusL: ", values.pituusL);
 
+    }, [values.forceType])
+    */
     // haetaan maksimi momentin arvo Moment.js:stä
     const handleMaxMomentChange_backend = (newMoment) => {
-        console.log("newMoment (handleMaxMomentChange):", newMoment);
-        setMaxMomentChange_backend(newMoment);
+        console.log("newMoment (handleMaxMomentChange):", JSON.stringify(newMoment));
+        setMaxMomentChange_backend(JSON.stringify(newMoment));
+        values.maxM = JSON.stringify(newMoment);
     }
 
     // haetaan maksimi momentin arvo Moment.js:stä
     const handleMaxShearChange_backend = (newShearForce) => {
-        console.log("newShearForce (handleMaxShearChange):", newShearForce);
-        setMaxShearChange_backend(newShearForce);
+        console.log("newShearForce (handleMaxShearChange):", JSON.stringify(newShearForce));
+        setMaxShearChange_backend(JSON.stringify(newShearForce));
+        values.maxV = JSON.stringify(newShearForce);
     }
 
     return (
         <div>
-
             <Moment
                 arvot={arvot}
                 maxMomentChange_backend={handleMaxMomentChange_backend}
+                hide={hide}
             />
-
             <ShearForce
                 arvot={arvot}
-                maxShearChange_backend={handleMaxShearChange_backend} />
+                maxShearChange_backend={handleMaxShearChange_backend}
+                hide={hide}
+            />
 
             <form autoComplete="off" noValidate className={classes.root} onSubmit={handleSubmit} >
                 <Grid container>
@@ -158,7 +188,6 @@ const TulosForm = ({ classes, ...props }) => {
                             onChange={handleInputChange}
                             {...(errors.pituusL && { error: true, helperText: errors.pituusL })}
                         />
-
                         <TextField
                             name="pituusA"
                             variant="outlined"
@@ -199,19 +228,6 @@ const TulosForm = ({ classes, ...props }) => {
                             onChange={handleInputChange}
                             {...(errors.kuormaPM && { error: true, helperText: errors.kuormaPM })}
                         />
-                        {/*
-                        <TextField
-                        name="forceType"
-                        variant="outlined"
-                        label="forceType"
-                        value={values.forceType}
-                        onChange={handleInputChange}
-                        {...(errors.forceType && { error: true, helperText: errors.forceType })}
-                    />
-                     */}
-
-
-
 
                         <FormControl variant="outlined"
                             className={classes.formControl}
@@ -232,14 +248,17 @@ const TulosForm = ({ classes, ...props }) => {
                                         </MenuItem>)
                                 })}
                             </Select>
-
                         </FormControl>
 
                         <TextField
                             name="maxM"
                             variant="outlined"
                             label="maxM"
-                            value={maxMomentChange_backend}
+                            variant="filled"
+                            inputProps={
+                                { readOnly: true, }
+                            }
+                            value={values.maxM}
                             onChange={handleInputChange}
                             {...(errors.maxM && { error: true, helperText: errors.maxM })}
                         />
@@ -247,10 +266,15 @@ const TulosForm = ({ classes, ...props }) => {
                             name="maxV"
                             variant="outlined"
                             label="maxV"
-                            value={maxShearChange_backend}
+                            variant="filled"
+                            inputProps={
+                                { readOnly: true, }
+                            }
+                            value={values.maxV}
                             onChange={handleInputChange}
                             {...(errors.maxV && { error: true, helperText: errors.maxV })}
                         />
+                        {/*
                         <TextField
                             name="dateOfJoining"
                             variant="outlined"
@@ -259,6 +283,36 @@ const TulosForm = ({ classes, ...props }) => {
                             onChange={handleInputChange}
                             {...(errors.dateOfJoining && { error: true, helperText: errors.dateOfJoining })}
                         />
+                        */}
+
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                            <DatePicker
+                                label="Basic example"
+                                inputFormat="dd.MM.yyyy"
+                                value={values.dateOfJoining}
+                                onChange={(newValue) => {
+                                    setValues({ ...values, dateOfJoining: newValue });
+                                }}
+                                renderInput={(params) => <TextField {...params} />}
+                            />
+                        </LocalizationProvider>
+
+
+                        {/*
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+
+                            <KeyboardDatePicker
+                                label="Material Date Picker"
+                                value={selectedDate}
+                                onChange={handleInputChange}
+                            />
+
+                        </MuiPickersUtilsProvider>
+
+                        */}
+
+
+
                         <TextField
                             name="photoFileName"
                             variant="outlined"
@@ -267,7 +321,6 @@ const TulosForm = ({ classes, ...props }) => {
                             onChange={handleInputChange}
                             {...(errors.photoFileName && { error: true, helperText: errors.photoFileName })}
                         />
-
                         <div>
                             <Button
                                 variant="contained"
@@ -289,14 +342,10 @@ const TulosForm = ({ classes, ...props }) => {
                                 className={classes.smMargin}
                                 onClick={calculateParameterForm}
                             >
-                                CalculateParameter
+                                Calculate maxM and maxV
                             </Button>
                         </div>
-
                     </Grid>
-
-
-
                 </Grid>
             </form>
 
